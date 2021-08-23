@@ -43,7 +43,6 @@ class MeuPrimeiroComponente extends React.Component{
   }
 }
 
-
 function MeuComponente(){ //Function component
   return(
     <div>
@@ -75,34 +74,32 @@ class ComponenteComParametros2 extends React.Component{
 function A (props){
   return(
     <div>
-      <p>{props.nome}</p>
+      {/* Primeira chave indica um script JavaScript e as segundas representam um objeto */}
+      <p style={{color: "red", backgroundColor: 'black', padding: '20px'}}>{props.nome}</p>
     </div>
   )
 }
-
 
 function B (props){
   return(
     <div>
-      <p>{props.nome}</p>
+      <p style={{color: 'blue', backgroundColor: 'gray', padding: '20px'}}>{props.nome}</p>
     </div>
   )
 }
-
 
 function C (props){
   return(
     <div>
-      <p>{props.nome}</p>
+      <p style={{color: 'orange', backgroundColor: 'black' , padding: '20px'}}>{props.nome}</p>
     </div>
   )
 }
 
-
 function D (props){
   return(
     <div>
-      <p>{props.nome}</p>
+      <p style={{color: 'green', backgroundColor: 'gray' , padding: '20px'}}>{props.nome}</p>
     </div>
   )
 }
@@ -144,6 +141,9 @@ function Tempo(){
 
 setInterval(Tempo, 1000);
 
+///
+
+//Trabalhando com props/parâmetros em react.js
 function App (){
   return(
     <div>
@@ -157,15 +157,63 @@ function App (){
   )
 }
 
-//Trabalhando com props/parâmetros em react.js
+//INTRODUÇÃO AO CONCEITO DE STATE
+class App2 extends React.Component{
+  
+  constructor(){ //É escutado antes do método Render
+    super()
+    //Construimos dentro do contrutor uma coisa chamda State
+    this.state = {
+      nome: 'Jonatan',
+      idade: 17
+    }
+  }
+
+  render(){
+    return(
+      <div>
+        <hr style={{height: '2px', backgroundColor: 'black'}}/>
+        <p>Nome: {this.state.nome}, apelidado de {this.props.apelido}</p>
+        <p>Idade: {this.state.idade} </p>
+      </div>
+    )
+  }
+}
+
+class App3 extends React.Component{
+
+  constructor(){
+    super()
+    this.state = {
+      hobbie: 'Ler livros',
+      titulo: 'O poder do subconsciente'
+    }
+  }
+
+  render(){
+    // this.props.autor = 'não sei men' -> dará erro por serem valores fixos
+    // this.state.hobbie = 'Nadar' -> há como alterá-los, por serem valores mutáveis
+    return(
+      <div>
+        <p>Hobbie: {this.state.hobbie}</p>
+        <p>Livro preferido: {this.state.titulo}</p>
+        <p>Autor: {this.props.autor}</p>
+      </div>
+    )
+  }
+}
 
 //Agora podemos utilizar  uma expressão do ReactDOM para apresentar o conteúdo
 ReactDOM.render(
-  // <div>
-  //   <ComponentComParametro nome="Jonatan" apelido="Jon"/>
-  //   <ComponenteComParametros2 nome="Jonatan V. Valdivia" apelido="Tõinta"/>
-  // </div>,
-  <App/>,
+  <div>
+    <ComponentComParametro nome="Jonatan" apelido="Jon"/>
+    <ComponenteComParametros2 nome="Jonatan V. Valdivia" apelido="Tõinta"/>
+    <App/>
+    <App2 apelido="Jon"/>
+    <App3 autor="Joseph Murphy"/>
+  </div>,
+  
+  
 
   //Conteúdo, cujo não pode ser renderizado com o HTML dentro de aspas, no caso, teremos que utilizar de JSX
   // JSX: sintaxe semelhante a do HTML, porém sem dar erros, mesmo estando dentro de um ambiente de JavaScript
