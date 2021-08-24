@@ -266,6 +266,20 @@ class App4 extends React.Component{
   }
 }
 
+//EXERCÍCIO PRÁTICO
+
+class App5 extends React.Component{
+  render(){
+    return(
+      <div style={{backgroundColor: 'gray', padding: '10px'}}>
+        <NomeComponente nome="Joan" nomeFinal="Guilherme"/>
+        <NomeComponente nome="Joaquin" nomeFinal="Helder"/>
+        <NomeComponente nome="Joana" nomeFinal="Christina"/>
+      </div>
+    )
+  }
+}
+
 class NomeComponente extends React.Component{
   //Para cada componente ter o seu nome específico, usaremos as props
   constructor(props){
@@ -291,13 +305,29 @@ class NomeComponente extends React.Component{
   }
 }
 
-class App5 extends React.Component{
+//SIMPLIFICAR BINDINGS COM ARROW FUNCTIONS
+
+class App6 extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      elemento : 'AAA'
+    }
+    //Antes: com binding
+    // this.funcaoClique = this.funcaoClique.bind(this)
+    
+  }
+
+  //Depois: com arrow function
+  funcaoClique = () =>{
+    this.setState({elemento : 'AAAAAAAA'})
+  }
+
   render(){
     return(
-      <div style={{backgroundColor: 'gray', padding: '10px'}}>
-        <NomeComponente nome="Joan" nomeFinal="Guilherme"/>
-        <NomeComponente nome="Joaquin" nomeFinal="Helder"/>
-        <NomeComponente nome="Joana" nomeFinal="Christina"/>
+      <div style={{backgroundColor: 'purple', padding: '10px', marginTop: '30px'}}>
+        <p>{this.state.elemento}</p>
+        <button onClick={this.funcaoClique}>Alterar</button>
       </div>
     )
   }
@@ -314,6 +344,7 @@ ReactDOM.render(
     <Identificacao />
     <App4/>
     <App5/>
+    <App6/>
   </div>,
   
   
