@@ -203,14 +203,117 @@ class App3 extends React.Component{
   }
 }
 
+//UTILIZAÇÃO DE STATE E PROPS ENTRE PARENT E CHILD COMPONENTS
+class Identificacao extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      acessorio: 'aliança',
+      roupa    : 'sobre-tudo' 
+    }
+  }
+  render(){
+    return(
+      <div>
+        <Acessorio acessorio={this.state.acessorio}/>
+        <Roupa roupa={this.state.roupa}/>
+      </div>
+    )
+  }
+}
+
+class Acessorio extends React.Component{
+  render(){
+    return(
+      <p>Acessório: {this.props.acessorio}</p>
+    )
+  }
+}
+
+class Roupa extends React.Component{
+  render(){
+    return(
+      <p>Roupa: {this.props.roupa}</p>
+    )
+  }
+}
+
+class App4 extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      nome : 'Maria Joaquina'
+    }
+
+    this.clique = this.clique.bind(this)//Permite ligar de fato os organismos internos com a função de click. Então esta linha diz: existe uma ligação entre o atributo e a função
+  }
+
+  //Evento de click
+  clique() {
+    // this.state.nome = 'Joaquina'
+    //Para realmente alterar este valor, nós fazemos: 
+    this.setState({nome : 'Joaquina'})
+    console.log('Olá')
+  }
+
+  render(){
+    return(
+      <div style={{color: 'yellow', backgroundColor:"black", padding:"10px"}}>
+        <p>Nome: {this.state.nome}</p>
+        <button onClick={this.clique}>Clique</button>
+      </div>
+    )
+  }
+}
+
+class NomeComponente extends React.Component{
+  //Para cada componente ter o seu nome específico, usaremos as props
+  constructor(props){
+    super(props);
+    this.state = {
+      nome  : this.props.nome
+    }
+    //binding
+    this.clique = this.clique.bind(this)
+  }
+
+  clique(){
+    this.setState({nome: this.props.nomeFinal})
+  }
+
+  render(){
+    return(
+      <div>
+        <p>Nome: {this.state.nome}</p>
+        <button onClick={this.clique}>Mudar</button>
+      </div>
+    )
+  }
+}
+
+class App5 extends React.Component{
+  render(){
+    return(
+      <div style={{backgroundColor: 'gray', padding: '10px'}}>
+        <NomeComponente nome="Joan" nomeFinal="Guilherme"/>
+        <NomeComponente nome="Joaquin" nomeFinal="Helder"/>
+        <NomeComponente nome="Joana" nomeFinal="Christina"/>
+      </div>
+    )
+  }
+}
+
 //Agora podemos utilizar  uma expressão do ReactDOM para apresentar o conteúdo
 ReactDOM.render(
   <div>
-    <ComponentComParametro nome="Jonatan" apelido="Jon"/>
-    <ComponenteComParametros2 nome="Jonatan V. Valdivia" apelido="Tõinta"/>
+    <ComponentComParametro nome="Jonatan" apelido="Jon" />
+    <ComponenteComParametros2 nome="Jonatan V. Valdivia" apelido="Tõinta" />
     <App/>
-    <App2 apelido="Jon"/>
-    <App3 autor="Joseph Murphy"/>
+    <App2 apelido="Jon" />
+    <App3 autor="Joseph Murphy" />
+    <Identificacao />
+    <App4/>
+    <App5/>
   </div>,
   
   
