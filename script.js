@@ -333,6 +333,22 @@ class App6 extends React.Component{
   }
 }
 
+class App7 extends React.Component{
+  
+  metodo = (texto) =>{
+    console.log(texto)
+  }
+
+  render(){
+    return(
+      <div>
+        {/* Devemos passar uma função com parâmetro dentro de uma função anônima para que a função com parâmetro não seja executada */}
+        <button onClick={()=>this.metodo('Teste')}>Clicar</button>
+      </div>
+    )
+  }
+}
+
 //Agora podemos utilizar  uma expressão do ReactDOM para apresentar o conteúdo
 ReactDOM.render(
   <div>
@@ -345,6 +361,7 @@ ReactDOM.render(
     <App4/>
     <App5/>
     <App6/>
+    <App7/>
   </div>,
   
   
